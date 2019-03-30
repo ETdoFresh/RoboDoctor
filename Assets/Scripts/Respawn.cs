@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    public BoxCollider boxCollider;
+    public BoxCollider2D boxCollider;
 
     void OnValidate()
     {
-        boxCollider = boxCollider ?? GetComponent<BoxCollider>();
+        boxCollider = boxCollider ?? GetComponent<BoxCollider2D>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         other.transform.position = Vector3.zero;
     }

@@ -56,12 +56,12 @@ public class Controls : MonoBehaviour
     private void FixedUpdate()
     {
         input.y = 0;
-        GetComponent<Rigidbody>().AddForce(input * force);
+        GetComponent<Rigidbody2D>().AddForce(input * force);
 
         if (jump)
         {
             jump = false;
-            GetComponent<Rigidbody>().AddForce(Vector3.up * (jumpForce - GetComponent<Rigidbody>().velocity.y), ForceMode.VelocityChange);
+            GetComponent<Rigidbody2D>().velocity += Vector2.up * (jumpForce - GetComponent<Rigidbody2D>().velocity.y);
         }
     }
 }

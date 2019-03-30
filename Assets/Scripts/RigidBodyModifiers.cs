@@ -15,23 +15,23 @@ public class RigidBodyModifiers : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var additionalGravity = Physics.gravity * gravityMultiplier - Physics.gravity;
-        if (enableGravityMultiplier) GetComponent<Rigidbody>()?.AddForce(additionalGravity);
+        var additionalGravity = Physics2D.gravity * gravityMultiplier - Physics2D.gravity;
+        if (enableGravityMultiplier) GetComponent<Rigidbody2D>()?.AddForce(additionalGravity);
 
-        var velocity = GetComponent<Rigidbody>().velocity;
+        var velocity = GetComponent<Rigidbody2D>().velocity;
 
         var deltaX = -velocity.x * xDrag;
-        if (enableXDrag) GetComponent<Rigidbody>()?.AddForce(deltaX, 0, 0);
+        if (enableXDrag) GetComponent<Rigidbody2D>()?.AddForce(new Vector2(deltaX, 0));
 
         var deltaY = -velocity.y * yDrag;
-        if (enableYDrag) GetComponent<Rigidbody>()?.AddForce(0, deltaY, 0);
+        if (enableYDrag) GetComponent<Rigidbody2D>()?.AddForce(new Vector2(0, deltaY));
 
         deltaX = Mathf.Sign(velocity.x) * (maxVelocityX - Mathf.Abs(velocity.x));
         if (enableMaxVelocityX && Mathf.Abs(velocity.x) > maxVelocityX)
-            GetComponent<Rigidbody>().AddForce(deltaX, 0, 0, ForceMode.VelocityChange);
+            GetComponent<Rigidbody2D>().velocity += new Vector2(deltaX, 0);
 
         deltaY = Mathf.Sign(velocity.y) * (maxVelocityY - Mathf.Abs(velocity.y));
         if (enableMaxVelocityY && Mathf.Abs(velocity.y) > maxVelocityY)
-            GetComponent<Rigidbody>().AddForce(0, deltaY, 0, ForceMode.VelocityChange);
+            GetComponent<Rigidbody2D>().velocity += new Vector2(0, deltaY);
     }
 }
