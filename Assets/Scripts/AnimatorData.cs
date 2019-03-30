@@ -13,9 +13,12 @@ public class AnimatorData : MonoBehaviour
 
     private void Update()
     {
-        var scale = transform.localScale;
-        scale.x = Mathf.Sign(rigidbody2D.velocity.x) * Mathf.Abs(scale.x);
-        transform.localScale = scale;
+        if (Mathf.Abs(rigidbody2D.velocity.x) > 0.1f)
+        {
+            var scale = transform.localScale;
+            scale.x = Mathf.Sign(rigidbody2D.velocity.x) * Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
 
         animator.SetFloat("VelocityX", Mathf.Abs(rigidbody2D.velocity.x));
     }
