@@ -9,6 +9,7 @@ public class DisplaySpeed : MonoBehaviour
 
     private void Update()
     {
-        textMesh.text = "Speed: " + GetComponent<Rigidbody2D>().velocity.ToString();
+        if (textMesh)
+            textMesh.text = "Speed: " + GetComponent<Rigidbody2D>().velocity.ToString();
     }
 }

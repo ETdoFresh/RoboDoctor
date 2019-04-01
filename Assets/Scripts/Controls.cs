@@ -1,67 +1,41 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class Controls : MonoBehaviour
 {
-    public float force = 1;
-    public float jumpForce = 10;
-    private Vector2 input;
-    private bool jump;
+    public Vector2 buttonInput = Vector2.zero;
+    public Vector2 input = Vector2.zero;
+    public bool jump = false;
+    public bool interact = false;
 
-    private Vector2 buttonInput;
-
-    public InputButton leftButton;
-    public InputButton rightButton;
-    public InputButton jumpButton;
-
-    private void OnEnable()
-    {
-        leftButton.onPointerDown.AddListener(OnLeftDown);
-        leftButton.onPointerUp.AddListener(OnLeftUp);
-        rightButton.onPointerDown.AddListener(OnRightDown);
-        rightButton.onPointerUp.AddListener(OnRightUp);
-        jumpButton.onPointerDown.AddListener(OnJumpDown);
-    }
-
-    private void OnDisable()
-    {
-        leftButton.onPointerDown.RemoveListener(OnLeftDown);
-        leftButton.onPointerUp.RemoveListener(OnLeftUp);
-        rightButton.onPointerDown.RemoveListener(OnRightDown);
-        rightButton.onPointerUp.RemoveListener(OnRightUp);
-        jumpButton.onPointerDown.RemoveListener(OnJumpDown);
-    }
-
-    private void OnLeftDown() => buttonInput.x = -1;
-    private void OnLeftUp() => buttonInput.x = 0;
-    private void OnRightDown() => buttonInput.x = 1;
-    private void OnRightUp() => buttonInput.x = 0;
-    private void OnJumpDown() => jump = true;
+    public void OnLeftDown() => buttonInput.x = -1;
+    public void OnLeftUp() => buttonInput.x = 0;
+    public void OnRightDown() => buttonInput.x = 1;
+    public void OnRightUp() => buttonInput.x = 0;
+    public void OnJumpDown() => jump = true;
+    public void OnInteractDown() => interact = true;
 
     void Update()
     {
-        input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        input.x = Input.GetAxisRaw("Horizontal");
+        input.y = Input.GetAxisRaw("Vertical");
         if (input.x == 0) input.x = buttonInput.x;
         jump = Input.GetButtonDown("Jump") ? true : jump;
+        interact = Input.GetButtonDown("Fire2") ? true : interact;
 
-        if (input.x != 0)
-            GetComponent<RigidBodyModifiers>().enableXDrag = false;
-        else
-            GetComponent<RigidBodyModifiers>().enableXDrag = true;
+        if (interact)
+        {
+            foreach (var controlled in FindObjectsOfType<Controlled>())
+                controlled.Interact();
+            interact = false;
+        }
     }
 
     private void FixedUpdate()
     {
-        input.y = 0;
-        GetComponent<Rigidbody2D>().AddForce(input * force);
+        foreach (var controlled in FindObjectsOfType<Controlled>())
+            controlled.Control(input, ref jump);
 
         if (jump)
-        {
             jump = false;
-            GetComponent<Rigidbody2D>().velocity += Vector2.up * (jumpForce - GetComponent<Rigidbody2D>().velocity.y);
-        }
     }
 }
