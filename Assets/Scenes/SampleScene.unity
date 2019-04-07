@@ -47474,18 +47474,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 509850001}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: leftButton
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: rightButton
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: jumpButton
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8971503761194454327, guid: 404357863862340419ebf23764a4e82b,
         type: 3}
       propertyPath: m_Name
@@ -47551,10 +47539,5 @@ PrefabInstance:
       propertyPath: textMesh
       value: 
       objectReference: {fileID: 929711693}
-    - target: {fileID: 8971503761194454320, guid: 404357863862340419ebf23764a4e82b,
-        type: 3}
-      propertyPath: interactButton
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 404357863862340419ebf23764a4e82b, type: 3}
