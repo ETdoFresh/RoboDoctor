@@ -4,11 +4,13 @@ public class AnimatorData : MonoBehaviour
 {
     public Animator animator;
     public new Rigidbody2D rigidbody2D;
+    public Normal normal;
 
-    private void Start()
+    private void OnValidate()
     {
-        animator = GetComponentInChildren<Animator>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = animator ?? GetComponentInChildren<Animator>();
+        rigidbody2D = rigidbody2D ?? GetComponent<Rigidbody2D>();
+        normal = normal ?? GetComponent<Normal>();
     }
 
     private void Update()
@@ -20,6 +22,6 @@ public class AnimatorData : MonoBehaviour
             transform.localScale = scale;
         }
 
-        animator.SetFloat("VelocityX", Mathf.Abs(rigidbody2D.velocity.x));
+        animator.SetFloat("VelocityX", Mathf.Abs(normal.forwardVelocity));
     }
 }

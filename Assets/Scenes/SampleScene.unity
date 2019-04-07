@@ -972,7 +972,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35256704}
-  m_LocalRotation: {x: -0.040366117, y: 5.292136e-10, z: 0.000000013099691, w: 0.999185}
+  m_LocalRotation: {x: -0.04036612, y: 0.000000007973723, z: 0.0000000134004425, w: 0.999185}
   m_LocalPosition: {x: -12.226, y: 45.654, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10916,7 +10916,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: -0.040366117, y: 5.292136e-10, z: 0.000000013099691, w: 0.999185}
+  m_LocalRotation: {x: -0.04036612, y: 0.000000007973723, z: 0.0000000134004425, w: 0.999185}
   m_LocalPosition: {x: 0, y: 0, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -34450,6 +34450,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555306045}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1555456765 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8971503761194454327, guid: 404357863862340419ebf23764a4e82b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8971503760790359445}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1555456770 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8971503761194454321, guid: 404357863862340419ebf23764a4e82b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8971503760790359445}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1555456774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555456765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63254f1bb06098d48aef4b9fd06e36b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPoint: {x: 0, y: 0.25, z: 0}
+  endPoint: {x: 0, y: -0.25, z: 0}
+  normal: {fileID: 1555456775}
+--- !u!114 &1555456775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555456765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f5a866ade0d1240844e4e946dee9fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardVelocity: 0
+  upVelocity: 0
+  forward: {x: 0, y: 0}
+  up: {x: 0, y: 0}
+  rigidbody2D: {fileID: 1555456770}
 --- !u!1 &1559457871
 GameObject:
   m_ObjectHideFlags: 0

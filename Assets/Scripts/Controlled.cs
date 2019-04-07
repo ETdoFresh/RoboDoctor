@@ -13,10 +13,13 @@ public class Controlled : MonoBehaviour
             GetComponent<RigidBodyModifiers>().enableXDrag = true;
 
         input.y = 0;
-        GetComponent<Rigidbody2D>().AddForce(input * force);
+        GetComponent<Rigidbody2D>().AddRelativeForce(input * force);
 
-        if (jump)
-            GetComponent<Rigidbody2D>().velocity += Vector2.up * (jumpForce - GetComponent<Rigidbody2D>().velocity.y);
+        if (jump && GetComponent<GroundCheck>() && GetComponent<GroundCheck>().groundCheck)
+        {
+            var velocity = new Vector2(Mathf.Cos(Mathf.Deg2Rad * (transform.eulerAngles.z + 90)), Mathf.Sin(Mathf.Deg2Rad * (transform.eulerAngles.z + 90)));
+            GetComponent<Rigidbody2D>().velocity += velocity * (jumpForce - GetComponent<Rigidbody2D>().velocity.y);
+        }
     }
 
     public void Interact()
